@@ -14,17 +14,12 @@ $status = "";
 $id=$_REQUEST['id'];
 $title =$_REQUEST['title'];
 
-
-
 if(isset($_POST['new']) && $_POST['new']==1)
 {
    $id=$_POST['id'];
    $title =$_POST['title'];
-   echo $title;
-   echo $id;
 
    $update="UPDATE categories SET title='".$title."' where id='". $id ."'";
-   echo $update;
 
    mysqli_query($db, $update) or die(mysqli_error());
    $status = "Обновлено успешно. </br></br><a href='categories.php'>Список категорий</a>";
