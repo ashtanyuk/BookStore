@@ -19,9 +19,18 @@ if ($result = $db->query("SELECT * FROM books WHERE id='$id'")) {
     $result->close();
 }
 
+$categories = array();
+if ($result = $db->query('SELECT * FROM categories')) {
+    while($tmp = $result->fetch_assoc()) {
+        $categories[] = $tmp;
+    }
+    $result->close();
+}
+
 $title=$book['title'];
 $author=$book['author'];
 $price=$book['price'];
+$category=$book['category'];
 
 
 if(isset($_POST['new']) && $_POST['new']==1)
@@ -30,8 +39,10 @@ if(isset($_POST['new']) && $_POST['new']==1)
    $title=$_POST['title'];
    $author=$_POST['author'];
    $price=$_POST['price'];
+   $category=$_POST['category'];
+   
 
-   $update="UPDATE books SET title='".$title."', author='".$author."', price='".$price."' where id='". $id ."'";
+   $update="UPDATE books SET title='".$title."', author='".$author."', price='".$price."', category='".$category."' where id='". $id ."'";
 
    mysqli_query($db, $update) or die(mysqli_error());
    $status = "Обновлено успешно. </br></br><a href='books.php'>Список книг</a>";
@@ -46,6 +57,16 @@ else
     <p><input type="text" name="title" placeholder="Название:" required value="<?php echo $title;?>" /></p>
     <p><input type="text" name="author" placeholder="Автор:" required value="<?php echo $author;?>" /></p>
     <p><input type="text" name="price" placeholder="Цена:" required value="<?php echo $price;?>" /></p>
+<p><select id="category" name="category" >
+  <?php 
+    foreach($categories AS $category) {
+        $id = $category['id'];
+        $title = $category['title'];
+        echo "<option value=\"$id\">$title</option>";
+    }
+    ?>
+</select>
+
     <p><input name="submit" type="submit" value="Обновить" /></p>
 </form>
 <?php
