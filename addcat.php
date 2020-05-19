@@ -3,9 +3,8 @@ include("dbconfig.php");
 $status = "";
 
 if(isset($_POST['new']) && $_POST['new']==1){
-    $title =$_REQUEST['title'];
-    $ins_query="INSERT INTO categories
-    (`title`) values ('$title')";
+    $title =$_POST['title'];
+    $ins_query="INSERT INTO categories (`title`) values ('$title')";
     mysqli_query($db,$ins_query) or die(mysql_error());
     $status = "</br></br><a href='categories.php'>Категории</a>";
 }
