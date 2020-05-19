@@ -19,7 +19,7 @@ if(isset($_POST['new']) && $_POST['new']==1)
    $id=$_POST['id'];
    $title =$_POST['title'];
 
-   $update="UPDATE categories SET title='".$title."' where id='". $id ."'";
+   $update="UPDATE categories SET title='".$title."' WHERE id='". $id ."'";
 
    mysqli_query($db, $update) or die(mysqli_error());
    $status = "Обновлено успешно. </br></br><a href='categories.php'>Список категорий</a>";
@@ -37,6 +37,5 @@ else
 <?php
 }
 ?>
-
 </body>
 </html> 

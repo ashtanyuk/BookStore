@@ -1,7 +1,6 @@
 <?php
 include 'dbconfig.php';
 
-
 $books = array();
 if ($result = $db->query('SELECT * FROM books')) {
     while($tmp = $result->fetch_assoc()) {
@@ -18,7 +17,7 @@ if ($result = $db->query('SELECT * FROM books')) {
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	<H1>Спиок книг</H1>
+	<H1>Список книг</H1>
 
 <table border="1">
 	<tr><th>ID</th><th>Название</th><th>Автор</th><th>Цена</th><th>Категория</th><th>Обложка</th><th>Редактировать</th><th>Удалить</th></tr>
@@ -37,7 +36,7 @@ foreach($books AS $book) {
     $categories=$result->fetch_array();
     $result->close();
     $cat_title=$categories['title'];
-}
+   }
 
    echo "<tr><td>$id</td><td>$title</td><td>$author</td><td>$price</td><td>$cat_title</td>";
    echo "<td><img style=\"display:block;\" width=50% src=\"$imageURL\" alt=\"\" /><br>";

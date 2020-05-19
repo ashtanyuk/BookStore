@@ -11,10 +11,10 @@ if ($result = $db->query('SELECT * FROM categories')) {
 }
 
 if(isset($_POST['new']) && $_POST['new']==1){
-    $title =$_REQUEST['title'];
-    $author =$_REQUEST['author'];
-    $price =$_REQUEST['price'];
-    $category=$_REQUEST['category'];
+    $title =$_POST['title'];
+    $author =$_POST['author'];
+    $price =$_POST['price'];
+    $category=$_POST['category'];
 
     $ins_query="INSERT INTO books
     (`title`,`author`,`price`,`category`) values ('$title','$author','$price','$category')";
